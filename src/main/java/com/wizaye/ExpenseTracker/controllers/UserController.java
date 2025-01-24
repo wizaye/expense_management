@@ -13,7 +13,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/getUsers")
     public ResponseEntity<?> getUsers(){
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
