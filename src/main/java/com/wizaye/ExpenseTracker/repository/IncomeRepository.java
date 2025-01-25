@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface IncomeRepository  extends MongoRepository<Income, UUID> {
 
     List<Income> findByUserId(UUID userUuid);
+    boolean deleteByUserId(UUID userUuid);
 }

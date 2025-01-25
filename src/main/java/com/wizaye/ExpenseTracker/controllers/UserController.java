@@ -22,4 +22,20 @@ public class UserController {
     public ResponseEntity<?> addUser(@RequestBody User user) throws Exception{
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.OK);
     }
+
+    @PutMapping("/updateUser/{userId}")
+    public ResponseEntity<?> updateUser(@PathVariable String userId, @RequestBody User user) throws Exception{
+        return new ResponseEntity<>(userService.updateUserById(userId,user),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deleteUser/{userId}")
+    public ResponseEntity<?> deleteUser(@PathVariable String userId){
+        return new ResponseEntity<>(userService.deleteUserById(userId),HttpStatus.OK);
+    }
 }
+
+// if user is deleted and his userId is given to fetch incomes default behaviour should be user doesnt exist
+// delete user gives 500 error with userId
+
+// Expense, Budget
+

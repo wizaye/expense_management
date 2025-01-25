@@ -1,7 +1,6 @@
 package com.wizaye.ExpenseTracker.controllers;
 
 import com.wizaye.ExpenseTracker.models.Income;
-import com.wizaye.ExpenseTracker.models.User;
 import com.wizaye.ExpenseTracker.services.IncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

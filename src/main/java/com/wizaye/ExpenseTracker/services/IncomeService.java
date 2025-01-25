@@ -47,42 +47,19 @@ public class IncomeService {
         }
         return null;
     }
-    public boolean deleteIncome(String userId, String incomeId) {
-        try {
-            // Parse the user and income IDs
-            UUID parsedUserId = UUID.fromString(userId);
-            UUID parsedIncomeId = UUID.fromString(incomeId);
-
-            // Retrieve the user
-            Optional<User> userOptional = userRepository.findById(parsedUserId);
-
-            if (userOptional.isPresent()) {
-                User user = userOptional.get();
-
-                // Check if the income is associated with the user
-                if (user.getUser_income().contains(parsedIncomeId)) {
-                    // Remove the income ID from the user's income list
-                    user.getUser_income().remove(parsedIncomeId);
-                    userRepository.save(user); // Persist the updated user
-
-                    // Delete the income record
-                    if (incomeRepository.existsById(parsedIncomeId)) {
-                        incomeRepository.deleteById(parsedIncomeId);
-                    }
-                    return true;
-                }
-            }
-            return false;
-        } catch (IllegalArgumentException e) {
-            // Handle invalid UUID format
-            return false;
-        } catch (Exception e) {
-            // Log unexpected exceptions (optional)
-            System.err.println("Error while deleting income: " + e.getMessage());
-            return false;
+    public boolean deleteIncome(String userId,String incomeId){
+        UUID parseUserId =UUID.fromString(userId);
+        UUID parsedIncomeId=UUID.fromString(incomeId);
+        Optional<User> userOptional= userRepository.findById(parseUserId);
+        if(userOptional.isPresent() && userOptional.get().getUser_income().contains(parsedIncomeId)) {
+            incomeRepository.deleteById(parsedIncomeId);
+            userOptional.get().getUser_income().remove(parsedIncomeId);
+            userRepository.save(userOptional.get());
+            return true;
         }
-    }
+        return false;
 
+    }
 }
 
 

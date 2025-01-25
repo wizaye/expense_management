@@ -20,4 +20,6 @@ public class User {
     private String password;
     private String email;
     private List<UUID> user_income=new ArrayList<>();
+    private List<UUID> user_expenses=new ArrayList<>();
+    private List<UUID> user_budget=new ArrayList<>();
 }
