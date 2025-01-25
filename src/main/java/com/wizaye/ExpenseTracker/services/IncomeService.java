@@ -42,8 +42,9 @@ public class IncomeService {
         UUID parsedIncomeId = UUID.fromString(incomeId);
         Optional<User> userOptional = userRepository.findById(parsedUserId);
         if (userOptional.isPresent() && userOptional.get().getUser_income().contains(parsedIncomeId)) {
-            Income savedIncome = incomeRepository.save(income);
-            return income;
+            income.setUserId(parsedUserId);
+            income.setId(parsedIncomeId);
+            return incomeRepository.save(income);
         }
         return null;
     }
