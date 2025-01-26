@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Budget {
     @Id
     private UUID id= UUID.randomUUID();
-    private UUID user_id;
+    private UUID userId;
     private String category;
     private double monthly_budget;
     private Date start_date;
