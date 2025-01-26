@@ -12,4 +12,8 @@ import java.util.List;
 public interface UserRepository extends MongoRepository<User, UUID> {
     @Query(value="{'id': ?0}", fields="{'user_income': 1}")
     Optional<List<UUID>> getUserIncomes(UUID userId);
+    boolean existsByEmail(String email);
+    boolean existsByUsername(String username);
+    Optional<String> findByUsername(String username);
+
 }
