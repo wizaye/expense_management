@@ -32,7 +32,7 @@ public class BudgetService {
         Optional<User> userOptional=userRepository.findById(parsedUserId);
         if(userOptional.isPresent()){
             User user = userOptional.get();
-            budget.setUser_id(parsedUserId);
+            budget.setUserId(parsedUserId);
             Budget savedBudget=budgetRepository.save(budget);
             user.getUser_budget().add(savedBudget.getId());
             userRepository.save(userOptional.get());
@@ -45,7 +45,7 @@ public class BudgetService {
         UUID parsedBudgetId = UUID.fromString(budgetId);
         Optional<User> userOptional=userRepository.findById(parsedUserId);
         if(userOptional.isPresent() && userOptional.get().getUser_budget().contains(parsedBudgetId)) {
-            budget.setUser_id(parsedUserId);
+            budget.setUserId(parsedUserId);
             budget.setId(parsedBudgetId);
             return budgetRepository.save(budget);
         }
